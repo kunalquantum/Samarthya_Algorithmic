@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diameter of Binary Tree Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Diameter of Binary Tree Visualizer</h1>
+        <p class="description">
+            Visualize how to find the diameter (longest path between any two nodes) of a binary tree.
+        </p>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="treeInput">Enter tree values (comma-separated, 'null' for empty nodes):</label>
+                <input type="text" id="treeInput" placeholder="Example: 1,2,3,4,5,null,null" value="1,2,3,4,5,null,null">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed (ms):</label>
+                    <input type="range" id="speedSlider" min="500" max="2000" step="100" value="1000">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <div class="tree-container">
+                <div class="tree-display" id="treeDisplay"></div>
+            </div>
+            <div class="current-node-info" id="currentNodeInfo">
+                <div class="node-value">Current Node: <span></span></div>
+                <div class="height-info">
+                    <div>Left Height: <span class="left-height">0</span></div>
+                    <div>Right Height: <span class="right-height">0</span></div>
+                    <div>Total Path: <span class="total-path">0</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Operation -->
+        <div class="current-operation">
+            <div class="operation-info" id="currentOperation"></div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <div class="current-step" id="currentStep"></div>
+            <div class="steps-container" id="stepsContainer"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <div class="result-content" id="result"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About Diameter of Binary Tree</h3>
+            <div class="approach">
+                <h4>Approach</h4>
+                <ul>
+                    <li>The diameter of a binary tree is the length of the longest path between any two nodes in the tree.</li>
+                    <li>This path may or may not pass through the root.</li>
+                    <li>We use a recursive approach:
+                        <ul>
+                            <li>For each node, calculate the height of its left and right subtrees</li>
+                            <li>The path through the current node = left height + right height</li>
+                            <li>Keep track of the maximum path length seen so far</li>
+                        </ul>
+                    </li>
+                    <li>The base case is when we reach a null node (height = 0).</li>
+                </ul>
+            </div>
+            <div class="complexity">
+                <h4>Time and Space Complexity</h4>
+                <ul>
+                    <li>Time Complexity: O(n), where n is the number of nodes in the tree</li>
+                    <li>Space Complexity: O(h), where h is the height of the tree (due to recursion stack)</li>
+                </ul>
+            </div>
+            <div class="example">
+                <h4>Example</h4>
+                <pre>
+Tree:           1
+               / \
+              2   3
+             / \
+            4   5
+
+Diameter: 3 (path from node 4 to node 3 through nodes 2 and 1)
+                </pre>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

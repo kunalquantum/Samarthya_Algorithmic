@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String using Stack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Reverse String using Stack</h1>
+        <p class="description">
+            Visualize how a stack is used to reverse a string character by character.
+        </p>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="stringInput">Enter a string to reverse:</label>
+                <input type="text" id="stringInput" placeholder="Example: Hello World" value="Algorithm">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed (ms):</label>
+                    <input type="range" id="speedSlider" min="500" max="2000" step="100" value="1000">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <div class="string-container">
+                <h3>Original String</h3>
+                <div class="string-display" id="originalStringDisplay"></div>
+            </div>
+            
+            <div class="stack-container">
+                <h3>Stack</h3>
+                <div class="stack-display" id="stackDisplay">
+                    <div class="stack-bottom">Stack Bottom</div>
+                </div>
+            </div>
+            
+            <div class="string-container">
+                <h3>Reversed String</h3>
+                <div class="string-display" id="reversedStringDisplay"></div>
+            </div>
+            
+            <div class="current-info">
+                <div class="current-char-info" id="currentCharInfo">
+                    <div class="char-value">Current Character: <span></span></div>
+                    <div class="char-status" id="charStatus">
+                        <span class="status-text">Not Started</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Operation -->
+        <div class="current-operation">
+            <div class="operation-info" id="currentOperation"></div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <div class="current-step" id="currentStep"></div>
+            <div class="steps-container" id="stepsContainer"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <div class="result-content" id="result"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About String Reversal using Stack</h3>
+            <div class="algorithm-info">
+                <h4>Algorithm</h4>
+                <ol>
+                    <li>Initialize an empty stack.</li>
+                    <li>Push each character of the input string onto the stack, from left to right.</li>
+                    <li>Once all characters are pushed, pop each character from the stack and append it to the result string.</li>
+                    <li>Since stack follows Last-In-First-Out (LIFO) principle, the characters will be popped in reverse order.</li>
+                    <li>The resulting string will be the reverse of the original string.</li>
+                </ol>
+            </div>
+            
+            <div class="complexity">
+                <h4>Time and Space Complexity</h4>
+                <ul>
+                    <li>Time Complexity: O(n), where n is the length of the string</li>
+                    <li>Space Complexity: O(n) for storing all characters in the stack</li>
+                </ul>
+            </div>
+            
+            <div class="why-stack">
+                <h4>Why Use a Stack?</h4>
+                <p>
+                    A stack is perfect for reversing a string because of its Last-In-First-Out (LIFO) property. 
+                    The last character pushed onto the stack will be the first one popped off, 
+                    naturally creating the reverse order of the original string.
+                </p>
+                <p>
+                    While there are other ways to reverse a string (like using a reverse loop or built-in functions), 
+                    using a stack demonstrates an important data structure concept and is a classic example of how 
+                    stacks can be used to solve problems.
+                </p>
+            </div>
+            
+            <div class="examples">
+                <h4>Examples</h4>
+                <div class="example-cards">
+                    <div class="example-card">
+                        <h5>Example 1</h5>
+                        <p>Input: <code>"Hello"</code></p>
+                        <p>Output: <code>"olleH"</code></p>
+                        <div class="example-steps">
+                            <p>1. Push: H, e, l, l, o</p>
+                            <p>2. Pop: o, l, l, e, H</p>
+                        </div>
+                    </div>
+                    <div class="example-card">
+                        <h5>Example 2</h5>
+                        <p>Input: <code>"Algorithm"</code></p>
+                        <p>Output: <code>"mhtiroglA"</code></p>
+                        <div class="example-steps">
+                            <p>1. Push: A, l, g, o, r, i, t, h, m</p>
+                            <p>2. Pop: m, h, t, i, r, o, g, l, A</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

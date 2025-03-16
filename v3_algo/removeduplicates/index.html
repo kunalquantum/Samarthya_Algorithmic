@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Adjacent Duplicates Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Remove Adjacent Duplicates Visualizer</h1>
+        <h2>Stack-based Approach</h2>
+        
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="inputString">Enter String:</label>
+                <input type="text" id="inputString" placeholder="e.g., abbaca" value="abbaca">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed:</label>
+                    <input type="range" id="speedSlider" min="100" max="2000" value="1000" step="100">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <!-- Input String Display -->
+            <div class="string-display">
+                <h3>Input String</h3>
+                <div id="inputDisplay" class="characters"></div>
+                <div id="pointerDisplay" class="pointer">
+                    <div class="pointer-head">↑</div>
+                    <div class="pointer-label">Current</div>
+                </div>
+            </div>
+
+            <!-- Stack Visualization -->
+            <div class="stack-container">
+                <h3>Stack</h3>
+                <div class="stack-info">
+                    <p>Stack shows characters being processed</p>
+                </div>
+                <div class="stack-wrapper">
+                    <div id="stackDisplay" class="stack"></div>
+                    <div class="stack-base"></div>
+                </div>
+            </div>
+
+            <!-- Current Operation -->
+            <div class="current-operation">
+                <h3>Current Operation</h3>
+                <div id="currentOperation" class="operation-info"></div>
+            </div>
+
+            <!-- Result Preview -->
+            <div class="result-preview">
+                <h3>Current Result</h3>
+                <div id="resultPreview" class="characters"></div>
+            </div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <h3>Algorithm Steps</h3>
+            <div id="currentStep" class="current-step"></div>
+            <div id="stepsContainer" class="steps-container"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <h3>Final Result</h3>
+            <div id="result" class="result-content"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About Remove Adjacent Duplicates</h3>
+            <div class="algorithm-info">
+                <h4>Stack-based Solution</h4>
+                <p>Removes all adjacent duplicate characters in a string until no such duplicates exist.</p>
+                
+                <div class="approach">
+                    <h4>How it Works:</h4>
+                    <ul>
+                        <li>Uses a stack to keep track of characters</li>
+                        <li>Compares current character with top of stack</li>
+                        <li>If they match, removes both (pop from stack)</li>
+                        <li>If different, adds current character to stack</li>
+                        <li>Final stack contents form the result string</li>
+                    </ul>
+                </div>
+
+                <div class="complexity">
+                    <h4>Algorithm Details:</h4>
+                    <ul>
+                        <li><strong>Time Complexity:</strong> O(n)
+                            <ul>
+                                <li>n: length of input string</li>
+                                <li>Each character is processed once</li>
+                                <li>Stack operations are O(1)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Space Complexity:</strong> O(n)
+                            <ul>
+                                <li>Stack can store up to n characters</li>
+                                <li>Result string storage</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <h4>Example:</h4>
+                    <p>Input: "abbaca"</p>
+                    <p>Process:</p>
+                    <ol>
+                        <li>Push 'a' → Stack: [a]</li>
+                        <li>Push 'b' → Stack: [a,b]</li>
+                        <li>Push 'b' → Stack: [a,b,b] → Pop 'b','b' → Stack: [a]</li>
+                        <li>Push 'a' → Stack: [a,a] → Pop 'a','a' → Stack: []</li>
+                        <li>Push 'c' → Stack: [c]</li>
+                        <li>Push 'a' → Stack: [c,a]</li>
+                    </ol>
+                    <p>Result: "ca"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

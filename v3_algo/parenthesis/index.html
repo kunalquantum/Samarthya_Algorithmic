@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parenthesis Completeness Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Parenthesis Completeness Checker</h1>
+        <p class="description">
+            Visualize how a stack is used to check if a string of parentheses is valid (properly opened and closed).
+        </p>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="expressionInput">Enter expression with parentheses:</label>
+                <input type="text" id="expressionInput" placeholder="Example: {[()()]}" value="({[]})">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed (ms):</label>
+                    <input type="range" id="speedSlider" min="500" max="2000" step="100" value="1000">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <div class="expression-container">
+                <h3>Expression</h3>
+                <div class="expression-display" id="expressionDisplay"></div>
+            </div>
+            
+            <div class="stack-container">
+                <h3>Stack</h3>
+                <div class="stack-display" id="stackDisplay">
+                    <div class="stack-bottom">Stack Bottom</div>
+                </div>
+            </div>
+            
+            <div class="current-info">
+                <div class="current-char-info" id="currentCharInfo">
+                    <div class="char-value">Current Character: <span></span></div>
+                    <div class="char-status" id="charStatus">
+                        <span class="status-text">Not Started</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Operation -->
+        <div class="current-operation">
+            <div class="operation-info" id="currentOperation"></div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <div class="current-step" id="currentStep"></div>
+            <div class="steps-container" id="stepsContainer"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <div class="result-content" id="result"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About Parenthesis Checking</h3>
+            <div class="algorithm-info">
+                <h4>Algorithm</h4>
+                <ol>
+                    <li>Initialize an empty stack.</li>
+                    <li>Scan the expression from left to right.</li>
+                    <li>If the current character is an opening bracket (<code>(</code>, <code>{</code>, or <code>[</code>), push it onto the stack.</li>
+                    <li>If the current character is a closing bracket (<code>)</code>, <code>}</code>, or <code>]</code>), check if the stack is empty:
+                        <ul>
+                            <li>If the stack is empty, the expression is invalid.</li>
+                            <li>If the stack is not empty, pop the top element from the stack and check if it matches the current closing bracket:
+                                <ul>
+                                    <li>If they match (e.g., <code>(</code> and <code>)</code>), continue to the next character.</li>
+                                    <li>If they don't match (e.g., <code>(</code> and <code>]</code>), the expression is invalid.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>After scanning the entire expression, if the stack is empty, the expression is valid. Otherwise, it's invalid.</li>
+                </ol>
+            </div>
+            
+            <div class="complexity">
+                <h4>Time and Space Complexity</h4>
+                <ul>
+                    <li>Time Complexity: O(n), where n is the length of the expression</li>
+                    <li>Space Complexity: O(n) in the worst case when all characters are opening brackets</li>
+                </ul>
+            </div>
+            
+            <div class="examples">
+                <h4>Examples</h4>
+                <div class="example-cards">
+                    <div class="example-card valid">
+                        <h5>Valid Expressions</h5>
+                        <ul>
+                            <li><code>()</code> - Simple matching pair</li>
+                            <li><code>[]</code> - Simple matching pair</li>
+                            <li><code>{}</code> - Simple matching pair</li>
+                            <li><code>()[]{}</code> - Multiple pairs in sequence</li>
+                            <li><code>{[()]}</code> - Nested pairs</li>
+                        </ul>
+                    </div>
+                    <div class="example-card invalid">
+                        <h5>Invalid Expressions</h5>
+                        <ul>
+                            <li><code>(]</code> - Mismatched brackets</li>
+                            <li><code>([)]</code> - Incorrectly nested</li>
+                            <li><code>{[}</code> - Incomplete closing</li>
+                            <li><code>)</code> - Only closing bracket</li>
+                            <li><code>(((</code> - Only opening brackets</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

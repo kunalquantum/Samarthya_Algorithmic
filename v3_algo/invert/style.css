@@ -1,0 +1,232 @@
+/* Inherit base styles */
+@import url('../maxdepth/style.css');
+
+/* Invert Binary Tree specific styles */
+.trees-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.tree-wrapper {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--element-background);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.tree-display {
+    position: relative;
+    min-height: 400px;
+    width: 100%;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    padding: 30px 30px 60px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.tree-wrapper h3 {
+    text-align: center;
+    margin-top: 10px;
+    color: var(--primary-color);
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: var(--border-radius);
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.current-node-info {
+    margin: 2rem 0;
+    padding: 20px;
+    background-color: var(--element-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.node-value, .swap-info {
+    padding: 10px;
+    border-radius: var(--border-radius);
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.node-value span {
+    color: var(--primary-color);
+}
+
+.swap-info .left {
+    color: var(--info-color);
+}
+
+.swap-info .right {
+    color: var(--accent-color);
+}
+
+/* Node states */
+.tree-node.current {
+    background-color: var(--primary-color);
+    animation: pulse 1s infinite alternate;
+    z-index: 3;
+}
+
+.tree-node.swapping-left {
+    background-color: var(--info-color);
+    animation: swapLeft 1s ease;
+    z-index: 3;
+}
+
+.tree-node.swapping-right {
+    background-color: var(--accent-color);
+    animation: swapRight 1s ease;
+    z-index: 3;
+}
+
+.tree-node.inverted {
+    background-color: var(--success-color);
+    box-shadow: 0 0 15px var(--success-color);
+}
+
+/* Enhanced animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--primary-color);
+    }
+    100% {
+        transform: scale(1.2);
+        box-shadow: 0 0 20px var(--primary-color);
+    }
+}
+
+@keyframes swapLeft {
+    0% {
+        transform: translateX(0) scale(1);
+    }
+    50% {
+        transform: translateX(40px) scale(1.2);
+    }
+    100% {
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes swapRight {
+    0% {
+        transform: translateX(0) scale(1);
+    }
+    50% {
+        transform: translateX(-40px) scale(1.2);
+    }
+    100% {
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.tree-node.new {
+    animation: appear 0.5s ease;
+}
+
+/* Result animations */
+.result-content {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}
+
+.result-content.show {
+    color: var(--success-color);
+    animation: successResult 1s ease;
+}
+
+@keyframes successResult {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .trees-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tree-wrapper {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.tree-container {
+    margin: 2rem 0;
+    overflow-x: auto;
+    padding: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+    border-radius: var(--border-radius);
+}
+
+.tree-node {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    z-index: 2;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem;
+}
+
+.tree-edge {
+    position: absolute;
+    height: 3px;
+    background-color: var(--primary-color);
+    transform-origin: left;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    z-index: 1;
+} 

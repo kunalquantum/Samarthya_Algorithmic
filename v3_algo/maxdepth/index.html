@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximum Depth of Binary Tree Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Maximum Depth of Binary Tree Visualizer</h1>
+        <p class="description">
+            Find the maximum depth (height) of a binary tree. The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+        </p>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="treeInput">Enter tree values (comma-separated, 'null' for empty nodes):</label>
+                <input type="text" id="treeInput" placeholder="Example: 3,9,20,null,null,15,7" value="3,9,20,null,null,15,7">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed:</label>
+                    <input type="range" id="speedSlider" min="500" max="2000" step="100" value="1000">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <!-- Tree Display -->
+            <div class="tree-container">
+                <h3>Binary Tree</h3>
+                <div id="treeDisplay" class="tree-display"></div>
+            </div>
+
+            <!-- Current Node Info -->
+            <div class="node-info">
+                <h3>Current Node</h3>
+                <div id="currentNodeInfo" class="info-content"></div>
+            </div>
+
+            <!-- Depth Calculation -->
+            <div class="depth-calculation">
+                <h3>Depth Calculation</h3>
+                <div id="depthCalculation" class="calculation-content"></div>
+            </div>
+
+            <!-- Current Operation -->
+            <div class="current-operation">
+                <h3>Current Operation</h3>
+                <div id="currentOperation" class="operation-info"></div>
+            </div>
+
+            <!-- Steps Display -->
+            <div class="steps-display">
+                <h3>Algorithm Steps</h3>
+                <div id="currentStep" class="current-step"></div>
+                <div id="stepsContainer" class="steps-container"></div>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <h3>Result</h3>
+            <div id="result" class="result-content"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About Maximum Depth of Binary Tree</h3>
+            
+            <div class="approach">
+                <h4>Recursive Approach</h4>
+                <ul>
+                    <li>The maximum depth of a binary tree is the maximum of:
+                        <ul>
+                            <li>The depth of the left subtree + 1</li>
+                            <li>The depth of the right subtree + 1</li>
+                        </ul>
+                    </li>
+                    <li>Base cases:
+                        <ul>
+                            <li>If the node is null, return 0</li>
+                            <li>If the node is a leaf (no children), return 1</li>
+                        </ul>
+                    </li>
+                    <li>The algorithm uses a recursive depth-first search (DFS) approach</li>
+                </ul>
+            </div>
+
+            <div class="complexity">
+                <h4>Time and Space Complexity</h4>
+                <ul>
+                    <li>Time Complexity: O(n) - where n is the number of nodes in the tree</li>
+                    <li>Space Complexity: O(h) - where h is the height of the tree (due to recursion stack)</li>
+                    <li>Best Case: O(log n) space for a balanced tree</li>
+                    <li>Worst Case: O(n) space for a skewed tree</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <pre>
+    3
+   / \
+  9  20
+     / \
+    15  7
+                </pre>
+                <p>Maximum Depth = 3</p>
+                <ul>
+                    <li>Root to leaf path through left child: 3 → 9 (depth = 2)</li>
+                    <li>Root to leaf path through right child: 3 → 20 → 15 or 3 → 20 → 7 (depth = 3)</li>
+                    <li>Therefore, the maximum depth is 3</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decode Ways Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Decode Ways Visualizer</h1>
+        <p class="description">
+            Calculate the number of ways to decode a string of digits into letters (A-Z) where:<br>
+            'A' = 1, 'B' = 2, ..., 'Z' = 26
+        </p>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="inputString">Enter a string of digits (e.g., "12345"):</label>
+                <input type="text" id="inputString" placeholder="Enter digits (1-9)" pattern="[0-9]+" maxlength="20">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed:</label>
+                    <input type="range" id="speedSlider" min="500" max="2000" step="100" value="1000">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <!-- Input String Display -->
+            <div class="string-display">
+                <h3>Input String</h3>
+                <div id="inputDisplay" class="digits"></div>
+                <div id="pointerDisplay" class="pointer">
+                    <div class="pointer-head">▲</div>
+                    <div class="pointer-label">Current Position</div>
+                </div>
+            </div>
+
+            <!-- DP Table -->
+            <div class="dp-table-container">
+                <h3>Dynamic Programming Table</h3>
+                <div class="dp-info">dp[i] = number of ways to decode string[0...i]</div>
+                <div id="dpTable" class="dp-table"></div>
+            </div>
+
+            <!-- Current Decodings -->
+            <div class="decodings-container">
+                <h3>Current Possible Decodings</h3>
+                <div id="currentDecodings" class="decodings"></div>
+            </div>
+
+            <!-- Current Operation -->
+            <div class="current-operation">
+                <h3>Current Operation</h3>
+                <div id="currentOperation" class="operation-info"></div>
+            </div>
+
+            <!-- Steps Display -->
+            <div class="steps-display">
+                <h3>Algorithm Steps</h3>
+                <div id="currentStep" class="current-step"></div>
+                <div id="stepsContainer" class="steps-container"></div>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <h3>Result</h3>
+            <div id="result" class="result-content"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About Decode Ways</h3>
+            
+            <div class="approach">
+                <h4>Dynamic Programming Approach</h4>
+                <ul>
+                    <li>Use a DP array where dp[i] represents the number of ways to decode the substring ending at index i</li>
+                    <li>For each position i, we can decode in two ways:
+                        <ul>
+                            <li>Single digit: If digit at i is not '0', add dp[i-1] to dp[i]</li>
+                            <li>Two digits: If digits at (i-1,i) form a valid number (10-26), add dp[i-2] to dp[i]</li>
+                        </ul>
+                    </li>
+                    <li>Base cases:
+                        <ul>
+                            <li>dp[0] = 1 if first digit is not '0'</li>
+                            <li>dp[1] depends on both single and two-digit possibilities</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="complexity">
+                <h4>Time and Space Complexity</h4>
+                <ul>
+                    <li>Time Complexity: O(n) - where n is the length of the input string</li>
+                    <li>Space Complexity: O(n) - to store the DP array</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <h4>Example</h4>
+                <p>Input: "12"</p>
+                <p>Can be decoded as:</p>
+                <ul>
+                    <li>"1 2" → "A B" (1=A, 2=B)</li>
+                    <li>"12" → "L" (12=L)</li>
+                </ul>
+                <p>Therefore, there are 2 ways to decode "12"</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

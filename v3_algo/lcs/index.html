@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longest Common Subsequence Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Longest Common Subsequence Visualizer</h1>
+        <h2>Dynamic Programming Approach</h2>
+        
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="sequence1">Enter First Sequence:</label>
+                <input type="text" id="sequence1" placeholder="e.g., ABCDGH" value="ABCDGH">
+            </div>
+            <div class="input-group">
+                <label for="sequence2">Enter Second Sequence:</label>
+                <input type="text" id="sequence2" placeholder="e.g., AEDFHR" value="AEDFHR">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed:</label>
+                    <input type="range" id="speedSlider" min="100" max="2000" value="1000" step="100">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <!-- Sequences Display -->
+            <div class="sequences-display">
+                <div class="sequence-container">
+                    <h3>Sequence 1</h3>
+                    <div id="sequence1Display" class="sequence"></div>
+                </div>
+                <div class="sequence-container">
+                    <h3>Sequence 2</h3>
+                    <div id="sequence2Display" class="sequence"></div>
+                </div>
+            </div>
+
+            <!-- DP Table Display -->
+            <div class="dp-table-container">
+                <h3>Dynamic Programming Table</h3>
+                <div class="dp-info">
+                    <p>Table shows lengths of LCS for different prefixes</p>
+                </div>
+                <div id="dpTable" class="dp-table"></div>
+            </div>
+
+            <!-- Current Cell Info -->
+            <div class="current-cell-info">
+                <h3>Current Comparison</h3>
+                <div id="currentCellInfo" class="cell-info"></div>
+            </div>
+
+            <!-- LCS Construction -->
+            <div class="lcs-construction">
+                <h3>LCS Construction</h3>
+                <div id="lcsConstruction" class="construction-steps"></div>
+            </div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <h3>Algorithm Steps</h3>
+            <div id="currentStep" class="current-step"></div>
+            <div id="stepsContainer" class="steps-container"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <h3>Result</h3>
+            <div id="result" class="result-content"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About Longest Common Subsequence</h3>
+            <div class="algorithm-info">
+                <h4>Dynamic Programming Solution</h4>
+                <p>Finds the longest subsequence present in both sequences in the same relative order.</p>
+                
+                <div class="complexity">
+                    <h4>Algorithm Details:</h4>
+                    <ul>
+                        <li><strong>Time Complexity:</strong> O(m × n)
+                            <ul>
+                                <li>m: length of first sequence</li>
+                                <li>n: length of second sequence</li>
+                                <li>DP table construction: O(m × n)</li>
+                                <li>LCS reconstruction: O(m + n)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Space Complexity:</strong> O(m × n)
+                            <ul>
+                                <li>Stores DP table of size (m+1) × (n+1)</li>
+                                <li>Additional space for backtracking</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="key-concepts">
+                    <h4>Key Steps:</h4>
+                    <ul>
+                        <li>Table Construction:
+                            <ul>
+                                <li>Build DP table bottom-up</li>
+                                <li>Compare characters and fill table entries</li>
+                                <li>Use previous results for optimal subproblems</li>
+                            </ul>
+                        </li>
+                        <li>LCS Construction:
+                            <ul>
+                                <li>Backtrack through the DP table</li>
+                                <li>Follow matches to construct LCS</li>
+                                <li>Start from bottom-right corner</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <h4>Example:</h4>
+                    <p>Sequence 1: "ABCDGH"</p>
+                    <p>Sequence 2: "AEDFHR"</p>
+                    <p>Longest Common Subsequence: "ADH"</p>
+                    <p>Explanation: Characters 'A', 'D', and 'H' appear in both sequences in the same relative order.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

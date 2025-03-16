@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balanced Binary Tree Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Balanced Binary Tree Visualizer</h1>
+        <p class="description">
+            Visualize how to check if a binary tree is height-balanced (the height difference between left and right subtrees of any node is not more than 1).
+        </p>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="treeInput">Enter tree values (comma-separated, 'null' for empty nodes):</label>
+                <input type="text" id="treeInput" placeholder="Example: 3,9,20,null,null,15,7" value="3,9,20,null,null,15,7">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed (ms):</label>
+                    <input type="range" id="speedSlider" min="500" max="2000" step="100" value="1000">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <div class="tree-container">
+                <div class="tree-display" id="treeDisplay"></div>
+            </div>
+            <div class="current-node-info" id="currentNodeInfo">
+                <div class="node-value">Current Node: <span></span></div>
+                <div class="height-info">
+                    <div>Left Height: <span class="left-height">0</span></div>
+                    <div>Right Height: <span class="right-height">0</span></div>
+                    <div>Height Difference: <span class="height-diff">0</span></div>
+                </div>
+                <div class="balance-status" id="balanceStatus">
+                    <span class="status-text">Balanced</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Operation -->
+        <div class="current-operation">
+            <div class="operation-info" id="currentOperation"></div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <div class="current-step" id="currentStep"></div>
+            <div class="steps-container" id="stepsContainer"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <div class="result-content" id="result"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About Balanced Binary Tree</h3>
+            <div class="approach">
+                <h4>Approach</h4>
+                <ul>
+                    <li>A binary tree is balanced if the height difference between left and right subtrees of every node is not more than 1.</li>
+                    <li>We use a recursive approach:
+                        <ul>
+                            <li>Calculate the height of left and right subtrees for each node</li>
+                            <li>Check if the absolute difference between heights is at most 1</li>
+                            <li>Recursively check if both left and right subtrees are also balanced</li>
+                        </ul>
+                    </li>
+                    <li>The base case is when we reach a null node (height = 0, considered balanced).</li>
+                </ul>
+            </div>
+            <div class="complexity">
+                <h4>Time and Space Complexity</h4>
+                <ul>
+                    <li>Time Complexity: O(n), where n is the number of nodes in the tree</li>
+                    <li>Space Complexity: O(h), where h is the height of the tree (due to recursion stack)</li>
+                </ul>
+            </div>
+            <div class="example">
+                <h4>Examples</h4>
+                <pre>
+Balanced Tree:       3
+                    / \
+                   9  20
+                      / \
+                     15  7
+
+Not Balanced:        1
+                    / \
+                   2   2
+                  / \
+                 3   3
+                / \
+               4   4
+                </pre>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

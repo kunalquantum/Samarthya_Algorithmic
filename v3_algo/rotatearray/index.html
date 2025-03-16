@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Array Rotation Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Enhanced Array Rotation Visualizer</h1>
+        
+        <div class="input-section">
+            <div class="array-input">
+                <label for="arrayInput">Enter array elements (comma-separated):</label>
+                <input type="text" id="arrayInput" placeholder="e.g., 1,2,3,4,5">
+            </div>
+            <div class="rotation-input">
+                <label for="rotationInput">Number of positions to rotate (k):</label>
+                <input type="number" id="rotationInput" min="0" value="1">
+                
+                <div class="method-select">
+                    <label>Rotation Method:</label>
+                    <select id="methodSelect">
+                        <option value="oneByOne">One by One Rotation</option>
+                        <option value="reversal">Reversal Algorithm</option>
+                        <option value="blockSwap">Block Swap Algorithm</option>
+                    </select>
+                </div>
+
+                <div class="direction-select">
+                    <label>
+                        <input type="radio" name="direction" value="right" checked> Rotate Right
+                    </label>
+                    <label>
+                        <input type="radio" name="direction" value="left"> Rotate Left
+                    </label>
+                </div>
+            </div>
+            <button id="rotateButton">Rotate Array</button>
+        </div>
+
+        <!-- Animation Speed Control -->
+        <div class="speed-control">
+            <label for="speedSlider">Animation Speed (ms):</label>
+            <input type="range" id="speedSlider" min="500" max="3000" value="1500" step="500">
+            <span id="speedValue">1500 ms</span>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-section">
+            <h2>Array Visualization</h2>
+            <div class="array-container">
+                <div id="arrayVisualization" class="visualization"></div>
+            </div>
+            <div id="subArrayVisualization" class="sub-visualization"></div>
+        </div>
+
+        <!-- Current Step Display -->
+        <div id="currentStep" class="current-step"></div>
+
+        <!-- Steps Section -->
+        <div class="steps-section">
+            <h2>Algorithm Steps</h2>
+            <div id="steps" class="steps"></div>
+        </div>
+
+        <!-- Method Explanation -->
+        <div class="method-explanation">
+            <h3>Current Method Explanation</h3>
+            <div id="methodExplanation" class="explanation-content">
+                <h4>One by One Rotation:</h4>
+                <p>Rotates the array by moving elements one position at a time.</p>
+                <ul>
+                    <li>Time Complexity: O(n × k)</li>
+                    <li>Space Complexity: O(1)</li>
+                    <li>Best for small rotations (small k)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="info-section">
+            <h3>How it works:</h3>
+            <p>1. Enter array elements separated by commas</p>
+            <p>2. Choose the number of positions to rotate (k)</p>
+            <p>3. Select rotation method and direction</p>
+            <p>4. Adjust animation speed if needed</p>
+            <p>5. Click "Rotate Array" to see the visualization</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

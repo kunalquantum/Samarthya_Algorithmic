@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Problems Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Array Problems Visualizer</h1>
+        
+        <!-- Algorithm Selection -->
+        <div class="algorithm-selection">
+            <h2>Select Algorithm</h2>
+            <select id="algorithmSelect">
+                <option value="twoSum">Two Sum</option>
+                <option value="kadane">Maximum Subarray Sum (Kadane's)</option>
+                <option value="dutchFlag">Sort Colors (Dutch Flag)</option>
+                <option value="mergeSorted">Merge Sorted Arrays</option>
+                <option value="leaders">Leaders in Array</option>
+            </select>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div id="twoSumInput" class="algorithm-input">
+                <h3>Two Sum</h3>
+                <input type="text" id="twoSumArray" placeholder="Enter array (comma-separated)" value="2,7,11,15">
+                <input type="number" id="targetSum" placeholder="Target sum" value="9">
+            </div>
+
+            <div id="kadaneInput" class="algorithm-input hidden">
+                <h3>Maximum Subarray Sum</h3>
+                <input type="text" id="kadaneArray" placeholder="Enter array (comma-separated)" value="-2,1,-3,4,-1,2,1,-5,4">
+            </div>
+
+            <div id="dutchFlagInput" class="algorithm-input hidden">
+                <h3>Sort Colors</h3>
+                <input type="text" id="dutchFlagArray" placeholder="Enter 0,1,2 only (comma-separated)" value="2,0,2,1,1,0">
+            </div>
+
+            <div id="mergeSortedInput" class="algorithm-input hidden">
+                <h3>Merge Sorted Arrays</h3>
+                <input type="text" id="array1" placeholder="Enter first sorted array" value="1,3,5,7">
+                <input type="text" id="array2" placeholder="Enter second sorted array" value="2,4,6,8">
+            </div>
+
+            <div id="leadersInput" class="algorithm-input hidden">
+                <h3>Leaders in Array</h3>
+                <input type="text" id="leadersArray" placeholder="Enter array (comma-separated)" value="16,17,4,3,5,2">
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <div class="speed-control">
+                <label for="speedSlider">Animation Speed:</label>
+                <input type="range" id="speedSlider" min="500" max="3000" value="1000" step="500">
+                <span id="speedValue">1000 ms</span>
+            </div>
+            <button id="visualizeBtn">Visualize</button>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <div class="array-container">
+                <h3>Current State</h3>
+                <div id="arrayVisualization"></div>
+            </div>
+            
+            <!-- Algorithm-specific visualization elements -->
+            <div id="twoSumVisualization" class="algo-specific-viz">
+                <div class="pointers">
+                    <div class="pointer left">👆</div>
+                    <div class="pointer right">👆</div>
+                </div>
+            </div>
+
+            <div id="kadaneVisualization" class="algo-specific-viz hidden">
+                <div class="subarray-highlight"></div>
+                <div class="current-sum">Current Sum: <span>0</span></div>
+                <div class="max-sum">Maximum Sum: <span>0</span></div>
+            </div>
+
+            <div id="dutchFlagVisualization" class="algo-specific-viz hidden">
+                <div class="pointers">
+                    <div class="pointer low">Low</div>
+                    <div class="pointer mid">Mid</div>
+                    <div class="pointer high">High</div>
+                </div>
+            </div>
+
+            <div id="mergeSortedVisualization" class="algo-specific-viz hidden">
+                <div id="array1Viz" class="merge-array"></div>
+                <div id="array2Viz" class="merge-array"></div>
+                <div id="mergedArrayViz" class="merge-array"></div>
+            </div>
+
+            <div id="leadersVisualization" class="algo-specific-viz hidden">
+                <div class="current-leader">Current Leader: <span>None</span></div>
+            </div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <h3>Algorithm Steps</h3>
+            <div id="currentStep" class="current-step"></div>
+            <div id="stepsContainer" class="steps-container"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <div id="result" class="result-content"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <div id="twoSumInfo" class="algorithm-info">
+                <h3>Two Sum Problem</h3>
+                <p>Finds two numbers in the array that add up to a target sum.</p>
+                <ul>
+                    <li>Time Complexity: O(n)</li>
+                    <li>Space Complexity: O(n)</li>
+                </ul>
+            </div>
+
+            <div id="kadaneInfo" class="algorithm-info hidden">
+                <h3>Kadane's Algorithm</h3>
+                <p>Finds the contiguous subarray with the largest sum.</p>
+                <ul>
+                    <li>Time Complexity: O(n)</li>
+                    <li>Space Complexity: O(1)</li>
+                </ul>
+            </div>
+
+            <div id="dutchFlagInfo" class="algorithm-info hidden">
+                <h3>Dutch National Flag</h3>
+                <p>Sorts an array containing only 0s, 1s, and 2s in a single pass.</p>
+                <ul>
+                    <li>Time Complexity: O(n)</li>
+                    <li>Space Complexity: O(1)</li>
+                </ul>
+            </div>
+
+            <div id="mergeSortedInfo" class="algorithm-info hidden">
+                <h3>Merge Sorted Arrays</h3>
+                <p>Merges two sorted arrays into a single sorted array.</p>
+                <ul>
+                    <li>Time Complexity: O(n + m)</li>
+                    <li>Space Complexity: O(n + m)</li>
+                </ul>
+            </div>
+
+            <div id="leadersInfo" class="algorithm-info hidden">
+                <h3>Leaders in Array</h3>
+                <p>Finds all elements that are greater than all elements to their right.</p>
+                <ul>
+                    <li>Time Complexity: O(n)</li>
+                    <li>Space Complexity: O(1)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

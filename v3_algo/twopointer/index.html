@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Pointer Technique Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Two Pointer Technique Visualizer</h1>
+        <h2>Find Pairs with Target Sum</h2>
+        
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="arrayInput">Enter Sorted Array (comma-separated):</label>
+                <input type="text" id="arrayInput" placeholder="e.g., 1,2,3,4,5,6,7,8,9" value="1,2,3,4,5,6,7,8,9">
+            </div>
+            <div class="input-group">
+                <label for="targetSum">Target Sum:</label>
+                <input type="number" id="targetSum" value="10">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed:</label>
+                    <input type="range" id="speedSlider" min="100" max="2000" value="1000" step="100">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <!-- Array Display -->
+            <div class="array-container">
+                <h3>Array Elements</h3>
+                <div class="pointer-container">
+                    <div id="leftPointer" class="pointer left">👆<span>Left</span></div>
+                    <div id="rightPointer" class="pointer right">👆<span>Right</span></div>
+                </div>
+                <div id="arrayVisualization" class="array-elements"></div>
+            </div>
+            
+            <!-- Current Pair Display -->
+            <div class="pair-container">
+                <h3>Current Pair</h3>
+                <div class="pair-stats">
+                    <div class="stat">
+                        <span>Current Sum:</span>
+                        <span id="currentSum">0</span>
+                    </div>
+                    <div class="stat">
+                        <span>Target Sum:</span>
+                        <span id="targetDisplay">0</span>
+                    </div>
+                </div>
+                <div id="pairVisualization" class="pair-elements"></div>
+            </div>
+
+            <!-- Found Pairs Display -->
+            <div class="found-pairs">
+                <h3>Found Pairs</h3>
+                <div id="foundPairsVisualization" class="pairs-grid"></div>
+            </div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <h3>Algorithm Steps</h3>
+            <div id="currentStep" class="current-step"></div>
+            <div id="stepsContainer" class="steps-container"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <h3>Result</h3>
+            <div id="result" class="result-content"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About Two Pointer Technique</h3>
+            <div class="algorithm-info">
+                <h4>Find Pairs with Target Sum</h4>
+                <p>Uses two pointers to find pairs of numbers in a sorted array that sum up to a target value.</p>
+                
+                <div class="complexity">
+                    <h4>Algorithm Details:</h4>
+                    <ul>
+                        <li><strong>Time Complexity:</strong> O(n)
+                            <ul>
+                                <li>Single pass through the array</li>
+                                <li>Each pointer moves at most n steps</li>
+                            </ul>
+                        </li>
+                        <li><strong>Space Complexity:</strong> O(1)
+                            <ul>
+                                <li>Only needs two pointers</li>
+                                <li>Additional space used only for storing results</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="key-concepts">
+                    <h4>Key Concepts:</h4>
+                    <ul>
+                        <li>Two Pointer Movement:
+                            <ul>
+                                <li>Left pointer starts from beginning</li>
+                                <li>Right pointer starts from end</li>
+                                <li>Move based on sum comparison with target</li>
+                            </ul>
+                        </li>
+                        <li>Pointer Movement Rules:
+                            <ul>
+                                <li>If sum > target: Move right pointer left</li>
+                                <li>If sum < target: Move left pointer right</li>
+                                <li>If sum = target: Record pair and move both pointers</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <h4>Example:</h4>
+                    <p>Input Array: [1, 2, 3, 4, 5, 6, 7, 8, 9]</p>
+                    <p>Target Sum: 10</p>
+                    <p>Found Pairs: [1,9], [2,8], [3,7], [4,6]</p>
+                    <p>Explanation: Each pair sums up to the target value of 10.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

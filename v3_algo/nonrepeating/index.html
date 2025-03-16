@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Non-Repeating Number Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>First Non-Repeating Number Visualizer</h1>
+        
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="arrayInput">Enter Array (comma-separated):</label>
+                <input type="text" id="arrayInput" placeholder="e.g., 7,2,3,2,4,3,7,5" value="7,2,3,2,4,3,7,5">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed:</label>
+                    <input type="range" id="speedSlider" min="100" max="2000" value="1000" step="100">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <div class="array-container">
+                <h3>Array Visualization</h3>
+                <div id="arrayVisualization" class="array-elements"></div>
+            </div>
+            
+            <div class="frequency-map">
+                <h3>Frequency Count</h3>
+                <div id="frequencyVisualization" class="frequency-elements"></div>
+            </div>
+
+            <div class="current-element">
+                <h3>Current Element</h3>
+                <div id="currentElement" class="element-highlight"></div>
+            </div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <h3>Algorithm Steps</h3>
+            <div id="currentStep" class="current-step"></div>
+            <div id="stepsContainer" class="steps-container"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <h3>Result</h3>
+            <div id="result" class="result-content"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About the Algorithm</h3>
+            <div class="algorithm-info">
+                <h4>First Non-Repeating Number</h4>
+                <p>This algorithm finds the first number in the array that appears exactly once (non-repeating).</p>
+                <div class="complexity">
+                    <h4>Time and Space Complexity:</h4>
+                    <ul>
+                        <li><strong>Time Complexity:</strong> O(n) - We need to traverse the array twice
+                            <ul>
+                                <li>First pass: Count frequency of each element</li>
+                                <li>Second pass: Find first element with frequency 1</li>
+                            </ul>
+                        </li>
+                        <li><strong>Space Complexity:</strong> O(n) - We need a hash map to store frequency counts</li>
+                    </ul>
+                </div>
+                <div class="example">
+                    <h4>Example:</h4>
+                    <p>Input Array: [7, 2, 3, 2, 4, 3, 7, 5]</p>
+                    <p>First Non-Repeating Number: 4</p>
+                    <p>Explanation: 4 and 5 appear only once, but 4 appears first in the array.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Distance Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Distance Visualizer</h1>
+        <h2>Dynamic Programming Approach</h2>
+        
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="string1">Enter Source String:</label>
+                <input type="text" id="string1" placeholder="e.g., kitten" value="kitten">
+            </div>
+            <div class="input-group">
+                <label for="string2">Enter Target String:</label>
+                <input type="text" id="string2" placeholder="e.g., sitting" value="sitting">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed:</label>
+                    <input type="range" id="speedSlider" min="100" max="2000" value="1000" step="100">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <!-- Strings Display -->
+            <div class="strings-display">
+                <div class="string-container">
+                    <h3>Source String</h3>
+                    <div id="string1Display" class="string"></div>
+                </div>
+                <div class="string-container">
+                    <h3>Target String</h3>
+                    <div id="string2Display" class="string"></div>
+                </div>
+            </div>
+
+            <!-- DP Table Display -->
+            <div class="dp-table-container">
+                <h3>Dynamic Programming Table</h3>
+                <div class="dp-info">
+                    <p>Table shows minimum operations needed to transform prefixes</p>
+                </div>
+                <div id="dpTable" class="dp-table"></div>
+            </div>
+
+            <!-- Current Operation Info -->
+            <div class="current-operation-info">
+                <h3>Current Operation</h3>
+                <div id="currentOperationInfo" class="operation-info"></div>
+                <div class="costs-info">
+                    <div class="cost-item">
+                        <span class="cost-label">Insert Cost:</span>
+                        <span class="cost-value">1</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-label">Delete Cost:</span>
+                        <span class="cost-value">1</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-label">Replace Cost:</span>
+                        <span class="cost-value">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transformation Steps -->
+            <div class="transformation-steps">
+                <h3>Transformation Steps</h3>
+                <div id="transformationSteps" class="steps-list"></div>
+            </div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <h3>Algorithm Steps</h3>
+            <div id="currentStep" class="current-step"></div>
+            <div id="stepsContainer" class="steps-container"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <h3>Result</h3>
+            <div id="result" class="result-content"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About Edit Distance</h3>
+            <div class="algorithm-info">
+                <h4>Dynamic Programming Solution</h4>
+                <p>Calculates the minimum number of operations required to transform one string into another.</p>
+                
+                <div class="operations">
+                    <h4>Available Operations:</h4>
+                    <ul>
+                        <li><strong>Insert:</strong> Add a character (Cost: 1)</li>
+                        <li><strong>Delete:</strong> Remove a character (Cost: 1)</li>
+                        <li><strong>Replace:</strong> Change one character to another (Cost: 1)</li>
+                    </ul>
+                </div>
+
+                <div class="complexity">
+                    <h4>Algorithm Details:</h4>
+                    <ul>
+                        <li><strong>Time Complexity:</strong> O(m × n)
+                            <ul>
+                                <li>m: length of source string</li>
+                                <li>n: length of target string</li>
+                                <li>Each cell requires constant time operations</li>
+                            </ul>
+                        </li>
+                        <li><strong>Space Complexity:</strong> O(m × n)
+                            <ul>
+                                <li>Stores DP table of size (m+1) × (n+1)</li>
+                                <li>Additional space for backtracking</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="key-concepts">
+                    <h4>Key Steps:</h4>
+                    <ul>
+                        <li>Table Construction:
+                            <ul>
+                                <li>Initialize first row and column</li>
+                                <li>Compare characters and calculate minimum operations</li>
+                                <li>Choose minimum cost operation at each step</li>
+                            </ul>
+                        </li>
+                        <li>Backtracking:
+                            <ul>
+                                <li>Start from bottom-right corner</li>
+                                <li>Determine operation type at each step</li>
+                                <li>Build transformation sequence</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <h4>Example:</h4>
+                    <p>Source: "kitten"</p>
+                    <p>Target: "sitting"</p>
+                    <p>Edit Distance: 3</p>
+                    <p>Operations:</p>
+                    <ol>
+                        <li>Replace 'k' with 's'</li>
+                        <li>Replace 'e' with 'i'</li>
+                        <li>Insert 'g' at the end</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,761 @@
+/* Inherit base styles */
+@import url('../balanced/style.css');
+
+:root {
+    --inorder-color: #4285f4;
+    --preorder-color: #ea4335;
+    --postorder-color: #34a853;
+    --processing-color: #fbbc05;
+    --visited-color: #4caf50;
+    --node-size: 40px;
+    --edge-thickness: 3px;
+    --animation-duration: 0.5s;
+    
+    /* RGB versions of colors for rgba usage */
+    --primary-color-rgb: 66, 133, 244;
+    --inorder-color-rgb: 66, 133, 244;
+    --preorder-color-rgb: 234, 67, 53;
+    --postorder-color-rgb: 52, 168, 83;
+    --visited-color-rgb: 76, 175, 80;
+}
+
+/* Tree Traversal specific styles */
+.traversal-type {
+    margin: 1rem 0;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+.radio-group label {
+    position: relative;
+    padding: 8px 15px 8px 35px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.radio-group label:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.radio-group input[type="radio"] + label::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+.radio-group input[type="radio"]:checked + label::before {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    box-shadow: inset 0 0 0 4px white;
+}
+
+#inorder:checked + label {
+    background-color: rgba(66, 133, 244, 0.1);
+    color: var(--inorder-color);
+}
+
+#preorder:checked + label {
+    background-color: rgba(234, 67, 53, 0.1);
+    color: var(--preorder-color);
+}
+
+#postorder:checked + label {
+    background-color: rgba(52, 168, 83, 0.1);
+    color: var(--postorder-color);
+}
+
+.traversal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.traversal-status {
+    padding: 15px;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+    margin-top: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.traversal-status .status-text {
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.traversal-status.visiting .status-text {
+    background-color: var(--primary-color);
+    color: white;
+    animation: pulse 1s infinite alternate;
+}
+
+.traversal-status.processing-left .status-text {
+    background-color: var(--inorder-color);
+    color: white;
+}
+
+.traversal-status.processing-right .status-text {
+    background-color: var(--postorder-color);
+    color: white;
+}
+
+.traversal-status.completed .status-text {
+    background-color: var(--visited-color);
+    color: white;
+}
+
+.traversal-result {
+    background-color: var(--element-background);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.traversal-result h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.traversal-nodes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    min-height: 60px;
+    padding: 1.2rem;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+    align-items: center;
+    justify-content: center;
+}
+
+.traversal-node {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--node-size);
+    height: var(--node-size);
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.5s ease;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.traversal-node::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    animation: ripple 1.5s ease-out infinite;
+    opacity: 0;
+}
+
+.traversal-node.visible {
+    opacity: 1;
+    transform: scale(1);
+    animation: bounceIn 0.5s ease;
+}
+
+.traversal-node.visible::after {
+    opacity: 1;
+}
+
+.traversal-node.inorder {
+    background-color: var(--inorder-color);
+}
+
+.traversal-node.inorder::after {
+    border-color: var(--inorder-color);
+}
+
+.traversal-node.preorder {
+    background-color: var(--preorder-color);
+}
+
+.traversal-node.preorder::after {
+    border-color: var(--preorder-color);
+}
+
+.traversal-node.postorder {
+    background-color: var(--postorder-color);
+}
+
+.traversal-node.postorder::after {
+    border-color: var(--postorder-color);
+}
+
+.traversal-node .node-index {
+    position: absolute;
+    top: -20px;
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: normal;
+}
+
+.traversal-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.method-card {
+    background-color: var(--element-background);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.method-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    transition: all 0.3s ease;
+}
+
+.method-card:nth-child(1)::before {
+    background-color: var(--inorder-color);
+}
+
+.method-card:nth-child(2)::before {
+    background-color: var(--preorder-color);
+}
+
+.method-card:nth-child(3)::before {
+    background-color: var(--postorder-color);
+}
+
+.method-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.method-card h4 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* Tree display enhancements */
+.tree-container {
+    position: relative;
+    margin-bottom: 2rem;
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.tree-display {
+    min-height: 350px;
+    position: relative;
+}
+
+/* Node states for different traversal methods */
+.tree-node {
+    width: var(--node-size);
+    height: var(--node-size);
+    border-radius: 50%;
+    background-color: #fff;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ddd;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.tree-node::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: -1;
+    transition: all 0.3s ease;
+    transform: scale(1.2);
+    opacity: 0;
+}
+
+.tree-node:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.tree-edge {
+    position: absolute;
+    height: var(--edge-thickness);
+    background-color: #ddd;
+    transform-origin: left center;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.tree-node.inorder-current {
+    background-color: var(--inorder-color);
+    color: white;
+    animation: pulse 1s infinite alternate;
+    z-index: 3;
+    box-shadow: 0 0 15px var(--inorder-color);
+}
+
+.tree-node.inorder-current::before {
+    background-color: rgba(66, 133, 244, 0.2);
+    opacity: 1;
+    animation: ripple 1.5s ease-out infinite;
+}
+
+.tree-node.preorder-current {
+    background-color: var(--preorder-color);
+    color: white;
+    animation: pulse 1s infinite alternate;
+    z-index: 3;
+    box-shadow: 0 0 15px var(--preorder-color);
+}
+
+.tree-node.preorder-current::before {
+    background-color: rgba(234, 67, 53, 0.2);
+    opacity: 1;
+    animation: ripple 1.5s ease-out infinite;
+}
+
+.tree-node.postorder-current {
+    background-color: var(--postorder-color);
+    color: white;
+    animation: pulse 1s infinite alternate;
+    z-index: 3;
+    box-shadow: 0 0 15px var(--postorder-color);
+}
+
+.tree-node.postorder-current::before {
+    background-color: rgba(52, 168, 83, 0.2);
+    opacity: 1;
+    animation: ripple 1.5s ease-out infinite;
+}
+
+.tree-node.processing-left {
+    background-color: var(--inorder-color);
+    color: white;
+    opacity: 0.8;
+    border-color: var(--inorder-color);
+}
+
+.tree-node.processing-right {
+    background-color: var(--postorder-color);
+    color: white;
+    opacity: 0.8;
+    border-color: var(--postorder-color);
+}
+
+.tree-node.visited {
+    background-color: var(--visited-color);
+    color: white;
+    box-shadow: 0 0 10px var(--visited-color);
+    border-color: var(--visited-color);
+}
+
+.tree-edge.processing-left {
+    opacity: 1;
+    height: calc(var(--edge-thickness) * 1.5);
+    background-color: var(--inorder-color);
+    box-shadow: 0 0 10px var(--inorder-color);
+}
+
+.tree-edge.processing-right {
+    opacity: 1;
+    height: calc(var(--edge-thickness) * 1.5);
+    background-color: var(--postorder-color);
+    box-shadow: 0 0 10px var(--postorder-color);
+}
+
+.tree-edge.visited {
+    opacity: 1;
+    height: calc(var(--edge-thickness) * 1.5);
+    background-color: var(--visited-color);
+    box-shadow: 0 0 10px var(--visited-color);
+}
+
+/* Current node info enhancements */
+.current-node-info {
+    background-color: var(--element-background);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.current-node-info .node-value {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.current-node-info .node-value span {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    padding: 5px 15px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    display: inline-block;
+    min-width: 50px;
+    margin-left: 10px;
+}
+
+/* Steps display enhancements */
+.steps-display {
+    margin: 2rem 0;
+}
+
+.current-step {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: var(--element-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.steps-container {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: var(--element-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.step {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+    animation: fadeIn 0.3s ease;
+}
+
+/* Result animations */
+.result-content {
+    padding: 1.5rem;
+    background-color: var(--element-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-content.completed {
+    color: var(--success-color);
+    animation: successResult 1s ease;
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 2px solid var(--success-color);
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px currentColor;
+    }
+    100% {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px currentColor;
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.2);
+    }
+    80% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes successResult {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .radio-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .traversal-methods {
+        grid-template-columns: 1fr;
+    }
+    
+    .traversal-node {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Tree legend */
+.tree-legend {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius);
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 0.85rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.legend-color.current {
+    background-color: var(--primary-color);
+}
+
+.legend-color.processing-left {
+    background-color: var(--inorder-color);
+}
+
+.legend-color.processing-right {
+    background-color: var(--postorder-color);
+}
+
+.legend-color.visited {
+    background-color: var(--visited-color);
+}
+
+/* Step types */
+.step-left {
+    border-left-color: var(--inorder-color) !important;
+}
+
+.step-right {
+    border-left-color: var(--postorder-color) !important;
+}
+
+.step-visit {
+    border-left-color: var(--primary-color) !important;
+    font-weight: bold;
+}
+
+.step-info {
+    border-left-color: var(--processing-color) !important;
+    background-color: rgba(251, 188, 5, 0.1);
+}
+
+.step-success {
+    border-left-color: var(--visited-color) !important;
+    background-color: rgba(76, 175, 80, 0.1);
+    font-weight: bold;
+}
+
+.current-step.step-left {
+    color: var(--inorder-color);
+}
+
+.current-step.step-right {
+    color: var(--postorder-color);
+}
+
+.current-step.step-visit {
+    color: var(--primary-color);
+}
+
+.current-step.step-success {
+    color: var(--visited-color);
+}
+
+/* Order labels */
+.order-label {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background-color: var(--primary-color);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+
+.tree-node.highlight-order .order-label {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.tree-node.path-highlight {
+    opacity: 0.7;
+    transition: all 0.5s ease;
+}
+
+.tree-node.path-highlight:hover {
+    opacity: 1;
+}
+
+/* Highlight changes */
+.highlight-change {
+    animation: highlightChange 1s ease;
+}
+
+@keyframes highlightChange {
+    0% {
+        background-color: rgba(var(--primary-color-rgb), 0.3);
+    }
+    100% {
+        background-color: rgba(var(--primary-color-rgb), 0);
+    }
+}
+
+/* Current operation */
+.current-operation {
+    margin: 1.5rem 0;
+}
+
+.operation-info {
+    padding: 1rem;
+    background-color: var(--element-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-left: 5px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+/* Responsive adjustments for the legend */
+@media (max-width: 768px) {
+    .tree-legend {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin-top: 1rem;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .legend-item {
+        margin-right: 15px;
+    }
+} 

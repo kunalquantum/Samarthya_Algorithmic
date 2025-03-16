@@ -1,0 +1,48 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Anagram Checker Visualizer</title>  
+    <link rel="stylesheet" href="style.css">  
+</head>  
+<body>  
+    <div class="container">  
+        <h1>Anagram Checker Visualizer</h1>  
+        <div class="input-section">  
+            <label for="string1">Enter first string:</label>  
+            <input type="text" id="string1" placeholder="e.g., listen">  
+            <label for="string2">Enter second string:</label>  
+            <input type="text" id="string2" placeholder="e.g., silent">  
+            <button id="checkButton">Check Anagram</button>  
+        </div>  
+
+        <!-- Animation Speed Control -->  
+        <div class="speed-control">  
+            <label for="speedSlider">Animation Speed:</label>  
+            <input type="range" id="speedSlider" min="500" max="3000" value="1000" step="100">  
+            <span id="speedValue">1000 ms</span>  
+        </div>  
+
+        <!-- Visualization Containers -->  
+        <div class="visualization-container">  
+            <div id="string1Viz" class="visualization">  
+                <h3>First String</h3>  
+                <div class="viz-content"></div>  
+            </div>  
+            <div id="string2Viz" class="visualization">  
+                <h3>Second String</h3>  
+                <div class="viz-content"></div>  
+            </div>  
+        </div>  
+
+        <div id="currentStep" class="current-step"></div>  
+        
+        <div class="steps-section">  
+            <h2>Algorithm Steps</h2>  
+            <div id="steps" class="steps"></div>  
+        </div>  
+    </div>  
+    <script src="script.js"></script>  
+</body>  
+</html>  

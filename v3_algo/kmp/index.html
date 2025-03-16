@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMP Pattern Searching Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>KMP Pattern Searching Visualizer</h1>
+        <h2>Knuth-Morris-Pratt Algorithm</h2>
+        
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="textInput">Enter Text:</label>
+                <input type="text" id="textInput" placeholder="e.g., ABABDABACDABABCABAB" value="ABABDABACDABABCABAB">
+            </div>
+            <div class="input-group">
+                <label for="patternInput">Enter Pattern to Search:</label>
+                <input type="text" id="patternInput" placeholder="e.g., ABABCABAB" value="ABABCABAB">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed:</label>
+                    <input type="range" id="speedSlider" min="100" max="2000" value="1000" step="100">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <!-- Text Display -->
+            <div class="text-container">
+                <h3>Text</h3>
+                <div id="textVisualization" class="text-display"></div>
+                <div id="textPointer" class="pointer">👆<span>Text Pointer</span></div>
+            </div>
+            
+            <!-- Pattern Display -->
+            <div class="pattern-container">
+                <h3>Pattern</h3>
+                <div id="patternVisualization" class="pattern-display"></div>
+                <div id="patternPointer" class="pointer">👆<span>Pattern Pointer</span></div>
+            </div>
+
+            <!-- LPS Array Display -->
+            <div class="lps-container">
+                <h3>LPS Array Construction</h3>
+                <div class="lps-info">
+                    <p>Longest Proper Prefix which is also Suffix</p>
+                </div>
+                <div id="lpsVisualization" class="lps-display">
+                    <div class="lps-pattern"></div>
+                    <div class="lps-values"></div>
+                </div>
+            </div>
+
+            <!-- Comparison Display -->
+            <div class="comparison-container">
+                <h3>Current Comparison</h3>
+                <div id="comparisonVisualization" class="comparison-display">
+                    <div class="text-segment"></div>
+                    <div class="pattern-segment"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <h3>Algorithm Steps</h3>
+            <div id="currentStep" class="current-step"></div>
+            <div id="stepsContainer" class="steps-container"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <h3>Result</h3>
+            <div id="result" class="result-content"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About KMP Pattern Searching</h3>
+            <div class="algorithm-info">
+                <h4>Knuth-Morris-Pratt Algorithm</h4>
+                <p>An efficient string matching algorithm that uses pattern preprocessing to achieve linear time complexity.</p>
+                
+                <div class="complexity">
+                    <h4>Algorithm Details:</h4>
+                    <ul>
+                        <li><strong>Time Complexity:</strong> O(n + m)
+                            <ul>
+                                <li>n: length of text</li>
+                                <li>m: length of pattern</li>
+                                <li>LPS array construction: O(m)</li>
+                                <li>Pattern searching: O(n)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Space Complexity:</strong> O(m)
+                            <ul>
+                                <li>Only needs LPS array of pattern length</li>
+                                <li>No additional space growth with text size</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="key-concepts">
+                    <h4>Key Steps:</h4>
+                    <ul>
+                        <li>Preprocessing:
+                            <ul>
+                                <li>Build LPS (Longest Proper Prefix which is also Suffix) array</li>
+                                <li>Use pattern to identify potential skip positions</li>
+                            </ul>
+                        </li>
+                        <li>Pattern Matching:
+                            <ul>
+                                <li>Compare text and pattern characters</li>
+                                <li>On mismatch, use LPS array to skip redundant comparisons</li>
+                                <li>Continue until pattern found or text end reached</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <h4>Example:</h4>
+                    <p>Text: "ABABDABACDABABCABAB"</p>
+                    <p>Pattern: "ABABCABAB"</p>
+                    <p>LPS Array: [0,0,1,2,0,1,2,3,4]</p>
+                    <p>Pattern found at index: 10</p>
+                    <p>Explanation: KMP algorithm efficiently finds the pattern by avoiding redundant comparisons using the LPS array.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

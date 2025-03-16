@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Palindrome Checker Visualizer</h1>
+        
+        <div class="input-section">
+            <div class="text-input">
+                <label for="palindromeInput">Enter text to check:</label>
+                <input type="text" id="palindromeInput" placeholder="e.g., racecar">
+            </div>
+            <div class="options">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="ignoreCase" checked> Ignore Case
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="ignoreSpaces" checked> Ignore Spaces
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="ignoreSpecialChars" checked> Ignore Special Characters
+                </label>
+            </div>
+            <button id="checkButton">Check Palindrome</button>
+        </div>
+
+        <!-- Animation Speed Control -->
+        <div class="speed-control">
+            <label for="speedSlider">Animation Speed:</label>
+            <input type="range" id="speedSlider" min="500" max="3000" value="1500" step="500">
+            <span id="speedValue">1500 ms</span>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-section">
+            <h2>String Visualization</h2>
+            <div class="visualization-container">
+                <div id="originalString" class="string-display">
+                    <h3>Original String</h3>
+                    <div class="characters"></div>
+                </div>
+                <div id="processedString" class="string-display">
+                    <h3>Processed String</h3>
+                    <div class="characters"></div>
+                </div>
+                <div id="palindromeCheck" class="string-display">
+                    <h3>Palindrome Check</h3>
+                    <div class="characters"></div>
+                    <div class="pointers">
+                        <div class="left-pointer">👆</div>
+                        <div class="right-pointer">👆</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Step Display -->
+        <div id="currentStep" class="current-step"></div>
+
+        <!-- Steps Section -->
+        <div class="steps-section">
+            <h2>Check Steps</h2>
+            <div id="steps" class="steps"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div id="result" class="result-section">
+            <div class="result-content"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>How it works:</h3>
+            <div class="info-content">
+                <p>1. Enter any text to check if it's a palindrome</p>
+                <p>2. Choose processing options (case, spaces, special characters)</p>
+                <p>3. Watch as the algorithm checks character by character</p>
+                <p>4. See the step-by-step comparison process</p>
+                <div class="examples">
+                    <h4>Example palindromes:</h4>
+                    <ul>
+                        <li>"racecar" - Simple palindrome</li>
+                        <li>"A man a plan a canal Panama" - Phrase palindrome</li>
+                        <li>"12321" - Numeric palindrome</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symmetric Tree Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Symmetric Tree Visualizer</h1>
+        <p class="description">
+            Visualize how we check if a binary tree is symmetric (mirror reflection of itself).
+        </p>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-group">
+                <label for="treeInput">Enter tree values (comma-separated, 'null' for empty nodes):</label>
+                <input type="text" id="treeInput" placeholder="Example: 1,2,2,3,4,4,3" value="1,2,2,3,4,4,3">
+            </div>
+            <div class="controls">
+                <div class="speed-control">
+                    <label for="speedSlider">Animation Speed (ms):</label>
+                    <input type="range" id="speedSlider" min="500" max="2000" step="100" value="1000">
+                    <span id="speedValue">1000 ms</span>
+                </div>
+                <button id="visualizeBtn">Visualize</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-area">
+            <div class="tree-container">
+                <div class="tree-display" id="treeDisplay"></div>
+            </div>
+            <div class="comparison-display" id="comparisonDisplay">
+                <div class="comparison-pair">
+                    <div class="left-node">Left Node: <span></span></div>
+                    <div class="right-node">Right Node: <span></span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Operation -->
+        <div class="current-operation">
+            <div class="operation-info" id="currentOperation"></div>
+        </div>
+
+        <!-- Steps Display -->
+        <div class="steps-display">
+            <div class="current-step" id="currentStep"></div>
+            <div class="steps-container" id="stepsContainer"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section">
+            <div class="result-content" id="result"></div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section">
+            <h3>About Symmetric Tree</h3>
+            <div class="approach">
+                <h4>Approach</h4>
+                <ul>
+                    <li>A binary tree is symmetric if its left and right subtrees are mirror images of each other.</li>
+                    <li>Two trees are mirrors if:
+                        <ul>
+                            <li>Their root values are equal</li>
+                            <li>The left subtree of each tree mirrors the right subtree of the other tree</li>
+                        </ul>
+                    </li>
+                    <li>We use recursive comparison of corresponding nodes in the left and right subtrees.</li>
+                </ul>
+            </div>
+            <div class="complexity">
+                <h4>Time and Space Complexity</h4>
+                <ul>
+                    <li>Time Complexity: O(n), where n is the number of nodes in the tree</li>
+                    <li>Space Complexity: O(h), where h is the height of the tree (due to recursion stack)</li>
+                </ul>
+            </div>
+            <div class="example">
+                <h4>Example</h4>
+                <pre>
+Symmetric Tree:       1
+                    / \
+                   2   2
+                  / \ / \
+                 3  4 4  3
+
+Not Symmetric:       1
+                    / \
+                   2   2
+                    \   \
+                     3   3
+                </pre>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

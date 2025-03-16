@@ -1,0 +1,216 @@
+/* Inherit base styles */
+@import url('../maxdepth/style.css');
+
+/* Diameter of Binary Tree specific styles */
+.tree-container {
+    margin: 2rem 0;
+    padding: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+    border-radius: var(--border-radius);
+    overflow: visible;
+}
+
+.tree-display {
+    position: relative;
+    min-height: 500px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    padding: 30px 30px 60px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.current-node-info {
+    margin: 2rem 0;
+    padding: 20px;
+    background-color: var(--element-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.height-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+}
+
+.height-info > div {
+    flex: 1;
+    min-width: 150px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.height-info .left-height {
+    color: var(--info-color);
+}
+
+.height-info .right-height {
+    color: var(--accent-color);
+}
+
+.height-info .total-path {
+    color: var(--success-color);
+}
+
+/* Node states */
+.tree-node {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    z-index: 2;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem;
+}
+
+.tree-edge {
+    position: absolute;
+    height: 3px;
+    background-color: var(--primary-color);
+    transform-origin: left;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.tree-node.current {
+    background-color: var(--primary-color);
+    animation: pulse 1s infinite alternate;
+    z-index: 3;
+}
+
+.tree-node.left-path {
+    background-color: var(--info-color);
+    animation: leftPathPulse 1s infinite alternate;
+    z-index: 3;
+}
+
+.tree-node.right-path {
+    background-color: var(--accent-color);
+    animation: rightPathPulse 1s infinite alternate;
+    z-index: 3;
+}
+
+.tree-node.diameter-path {
+    background-color: var(--success-color);
+    animation: diameterPulse 1.5s infinite alternate;
+    z-index: 4;
+    transform: scale(1.1);
+}
+
+.tree-edge.left-path {
+    opacity: 1;
+    height: 4px;
+    background-color: var(--info-color);
+    box-shadow: 0 0 10px var(--info-color);
+}
+
+.tree-edge.right-path {
+    opacity: 1;
+    height: 4px;
+    background-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+.tree-edge.diameter-path {
+    opacity: 1;
+    height: 5px;
+    background-color: var(--success-color);
+    box-shadow: 0 0 15px var(--success-color);
+    z-index: 2;
+}
+
+/* Enhanced animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--primary-color);
+    }
+    100% {
+        transform: scale(1.2);
+        box-shadow: 0 0 20px var(--primary-color);
+    }
+}
+
+@keyframes leftPathPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--info-color);
+    }
+    100% {
+        transform: scale(1.15);
+        box-shadow: 0 0 20px var(--info-color);
+    }
+}
+
+@keyframes rightPathPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--accent-color);
+    }
+    100% {
+        transform: scale(1.15);
+        box-shadow: 0 0 20px var(--accent-color);
+    }
+}
+
+@keyframes diameterPulse {
+    0% {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px var(--success-color);
+    }
+    100% {
+        transform: scale(1.25);
+        box-shadow: 0 0 25px var(--success-color);
+    }
+}
+
+/* Result animations */
+.result-content {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}
+
+.result-content.show {
+    color: var(--success-color);
+    animation: successResult 1s ease;
+}
+
+@keyframes successResult {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+} 
