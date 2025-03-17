@@ -1,69 +1,52 @@
-/* Basic styles for the home page */
+/* Add your custom styles here */
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
+/* Search Form Styles */
+.category-dropdown {
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: border-color 0.3s;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+.category-dropdown:focus {
+    border-color: #0056b3;
+    outline: none;
 }
 
-.header {
-    background-color: #f8f9fa;
-    padding: 20px;
-}
 
-.navbar {
+/* Search Form Styles */
+.search-form {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    margin: 20px 0;
 }
 
-.navbar-nav {
-    list-style: none;
-    display: flex;
+.search-input {
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    width: 300px;
+    transition: border-color 0.3s;
 }
 
-.nav-item {
-    margin: 0 15px;
+.search-input:focus {
+    border-color: #0056b3;
+    outline: none;
 }
 
-.btn {
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-primary {
+.search-button {
+    padding: 10px 15px;
     background-color: #007bff;
     color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.btn-secondary {
-    background-color: #6c757d;
-    color: white;
-}
-
-.home {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 50px 0;
-}
-
-.about {
-    display: flex;
-    justify-content: space-between;
-    padding: 50px 0;
-}
-
-.footer {
-    background-color: #343a40;
-    color: white;
-    padding: 20px;
-    text-align: center;
+.search-button:hover {
+    background-color: #0056b3;
 }
